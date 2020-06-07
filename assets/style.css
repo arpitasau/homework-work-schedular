@@ -4,7 +4,7 @@ body {
   
 }
 .container-fluid{
-  margin-left: 100px;
+  margin-left:auto;
   width: 85%;
 }
 
@@ -24,9 +24,8 @@ input {
   padding: 6px;
   padding-top: 15px;
   margin-top: 0px;
-  font-size: 15px;
-  border-style: solid;
-  background-color: #d3d3d3; 
+  font-size: 12px;
+  border-style: none;
   margin-right: 0px;
   text-align: center;
   border-color: rgb(34, 34, 32);
@@ -34,11 +33,11 @@ input {
 }
 .btn{
   white-space: pre-wrap;
-  padding: 12px;
+  padding: 17px;
   background-color: royalblue;
   margin-left: 0px;
 }
-.btn i:hover {
+.btn .fa .fa-floppy-o:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
