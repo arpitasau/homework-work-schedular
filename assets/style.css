@@ -1,18 +1,13 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1;
+  font-size: 14px;
+  
+}
+.container-fluid{
+  margin-left: 100px;
+  width: 85%;
 }
 
-textarea{
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
-  width: 100%;
-}
 input {
   height: 50px;
   width: 100%;
@@ -23,7 +18,7 @@ input {
   margin: 0;
   padding-left: 10px;
 }
-.showTime{
+.business-hours{
   height: 50px;
   width: 100%;
   padding: 6px;
@@ -38,8 +33,14 @@ input {
   border-width: .2px;
 }
 .btn{
+  white-space: pre-wrap;
   padding: 12px;
   background-color: royalblue;
+  margin-left: 0px;
+}
+.btn i:hover {
+  font-size: 20px;
+  transition: all .3s ease-in-out;
 }
 
 .jumbotron {
@@ -50,21 +51,13 @@ input {
   border-bottom: 10px solid black;
 }
 
-.description{
-  white-space: pre-wrap;
-}
-
-.time-block{
-  text-align: center;
-  border-radius: 15px;
-}
-
 .row {
-  white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
 }
-
+.marginRow{
+  margin-bottom:0px !important; 
+}
 .hour {
   background-color: #ffffff;
   color: #000000;
@@ -86,15 +79,5 @@ input {
   color: white;
 }
 
-.saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06AED5;
-  color: white;
-}
 
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all .3s ease-in-out;
-}
+
