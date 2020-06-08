@@ -7,26 +7,27 @@ var $container = $(".container-fluid");
 var currentTime = getCurrentTime();
 console.log("Current Time: " + currentTime.format('LT'));
 
-var events = [];
+
 
 //creating array of $businessHours
 //var businessHours = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"];
 var businessHours = [];
-
+var events = JSON.parse(localStorage.getItem('events')) || [];
+  console.log(events);   
 
 // this function is to make sure javascript starts  after HTML is loaded
 $(document).ready(function() {
   populateBusinessHours();
-  populateRows ();
+  populateRows();
   getTodaysDate();
-  var storedEvents = JSON.parse(localStorage.getItem("events"));
+  
 });  
 
 function populateBusinessHours() {
   var currentDOW = moment().isoWeekday();
   if (currentDOW <= 5) {
     var startTime = moment('09:00 am', "HH:mm a");
-    var endTime = moment('05:00 pm', "HH:mm a");
+    var endTime = moment('05:00 pm', "HH:mm p");
     amIBetween = currentTime.isBetween(startTime , endTime);
     if (amIBetween == true){
       console.log("Need to do some work");
@@ -40,7 +41,6 @@ function populateBusinessHours() {
       businessHours.push(updatedTime);
     }
   }
-
   // if (currentDOW ==6) {
   //   var startTime = moment('09:00 am', "HH:mm a");
   //   var endTime = moment('06:00 pm', "HH:mm a");
@@ -76,7 +76,8 @@ function populateRows (){
     var hoursDiv = $("<div>");
     var inputDiv = $("<div>");
     var buttonDiv =$("<div>");
-    var hours = $("<p>" +businessHours[i]+ "<p>");
+    console.log("Business hours: " + businessHours[i]);
+    var hours = $("<p>" +businessHours[i] + "<p>");
     var button = $("<button>");
     var input = $("<input>");
     $container.append(rowDiv);
@@ -102,20 +103,12 @@ function populateRows (){
 
 //add event listener to save button
 //for ( var j = 0; j < businessHours.length; j++ ) {
-  $(".action").on("click", function() {
-    var msgs = [
-      "button = " + $( this ).index()
-    ];
-    console.log("Button Counter: " + msgs);
-  });
-//}
-
-
-// function storeEvents(){
-//     if ($eventText=== "") {
-//         return;
-//     };
-//   events.push($eventText);
-//   console.log($eventText);
-//   localStorage.setItem("events", JSON.stringify($eventText));
-// };
+  $('body').on("click", '.action', function(){
+  var inputText = $eventText.val;
+    if (inputText=== "") {
+        return;
+    }
+  events.push(inputText);
+  console.log(events);
+  localStorage.setItem("events", JSON.stringify(events));
+});
