@@ -104,7 +104,7 @@ function populateRows (){
 //add event listener to save button
 //for ( var j = 0; j < businessHours.length; j++ ) {
   $('body').on("click", '.action', function(){
-  var inputText = $eventText.val;
+    var inputText = $eventText.val();
     if (inputText=== "") {
         return;
     }
