@@ -1,28 +1,21 @@
 // Identifying DOM elements
 var $currentDay = $("#currentDay");
 var $businessHours = $(".business-hours");
-var $eventText = $("#event-text");
 var $saveButton = $(".btn");
 var $container = $(".container-fluid");
 var currentTime = getCurrentTime();
 console.log("Current Time: " + currentTime.format('LT'));
-
-
-
 //creating array of $businessHours
 //var businessHours = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"];
 var businessHours = [];
-var events = JSON.parse(localStorage.getItem('events')) || [];
+var events = JSON.parse(localStorage.getItem('events')) || {};
   console.log(events);   
-
 // this function is to make sure javascript starts  after HTML is loaded
 $(document).ready(function() {
   populateBusinessHours();
   populateRows();
   getTodaysDate();
-  
 });  
-
 function populateBusinessHours() {
   var currentDOW = moment().isoWeekday();
   if (currentDOW <= 5) {
@@ -56,19 +49,16 @@ function populateBusinessHours() {
   //   document.write('We are currently closed. We will be open again on Monday at 8:00AM');
   // }
 }
-
 //Function to get date using moment.js
 //Refer https://momentjs.com/docs/ search for LLLL and http://zetcode.com/javascript/momentjs/
 function getTodaysDate() {
   var today = moment();
   $currentDay.append(today.format('LLLL'));
 }
-
 function getCurrentTime() {
   var currentTime = moment();
   return currentTime;
 }
-
 //Function to populate the rows on the page
 function populateRows (){
   for(var i = 0; i < businessHours.length; i++){
@@ -92,23 +82,23 @@ function populateRows (){
     inputDiv.attr("class", "col-10");
     buttonDiv.attr("class", "col-1");
     hours.attr("class", "business-hours");
-    input.attr("id", "event-text");
+    input.attr("class", "event-text");
     input.attr("data-index", i);
+    input.val(events['input'+ i] || '');
     button.attr("data-index", i);
     button.attr("class", "btn fa fa-floppy-o action");
-   
-
   };
 };
-
 //add event listener to save button
 //for ( var j = 0; j < businessHours.length; j++ ) {
   $('body').on("click", '.action', function(){
-    var inputText = $eventText.val();
+    var buttonIndex = $(this).data('index');
+    var inputText = $(".event-text").get(buttonIndex).value;
     if (inputText=== "") {
         return;
     }
-  events.push(inputText);
+    events['input' + buttonIndex] = inputText;
+  // events.push(inputText);
   console.log(events);
   localStorage.setItem("events", JSON.stringify(events));
 });
