@@ -21,27 +21,33 @@ function populateBusinessHours() {
   var currentDOW = moment().isoWeekday();
   if (currentDOW <= 5) {
     for(var i = 0; i < 9; i++) {
-      var initialTime = moment('09:00 am', "HH:mm a"); 
+      var initialTime = moment('04:00 pm', "HH:mm a"); 
       var incrementalTime = initialTime.add(moment.duration(i, 'hours'));
       businessHours.push(incrementalTime);
     }
-
+     
     for(var i = 0; i < businessHours.length; i++) {
       console.log(businessHours[i].format('LT'));
       amIBetween = currentTime.isBetween(businessHours[i], businessHours[i+1]);
       pastTime = currentTime.isAfter(businessHours[i+1]);
-      
+      console.log('.event-text [data-index="'+i+'"]');
       if (pastTime === true) {
         console.log("I am grey");
-        //$(".event-text").get(i).attr("class", "past");
+        //$('.event-text [data-index="'+i+'"]').attr("class", "past");
+        $('.event-text[data-index='+i+']').attr("class","past");
+        console.log(i);
+
       } else {
         if (amIBetween === true) {
+          $('.event-text[data-index='+i+']').attr("class","present");
           console.log("I am red");
-          //$(".event-text").get(i).attr("class", "present");
-          //$(".container-fluid").children.children(1).children.get(i).attr("class", "present");
+          console.log(i);
+          
         }else {
           console.log("I am green");
-          //$(".event-text").get(i).attr("class", "future");
+          $('.event-text [data-index="'+i+'"]').attr("class", "future");
+          console.log(i);
+
         }
       }
     }
@@ -64,7 +70,7 @@ function populateRows (){
     var hoursDiv = $("<div>");
     var inputDiv = $("<div>");
     var buttonDiv =$("<div>");
-    var hours = $("<p>" +businessHours[i].format('LT') + "<p>");
+    var hours = $("<p>" +businessHours[i].format('LT') + "</p>");
     var button = $("<button>");
     var input = $("<input>");
     $container.append(rowDiv);
@@ -79,6 +85,7 @@ function populateRows (){
     inputDiv.attr("class", "col-10");
     buttonDiv.attr("class", "col-1");
     hours.attr("class", "business-hours");
+    hours.attr("data-index", i);
     input.attr("class", "event-text");
     input.attr("data-index", i);
     input.val(events['input'+ i] || '');
