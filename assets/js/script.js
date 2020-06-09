@@ -38,6 +38,7 @@ function populateBusinessHours() {
         if (amIBetween === true) {
           console.log("I am red");
           //$(".event-text").get(i).attr("class", "present");
+          //$(".container-fluid").children.children(1).children.get(i).attr("class", "present");
         }else {
           console.log("I am green");
           //$(".event-text").get(i).attr("class", "future");
