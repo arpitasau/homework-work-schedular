@@ -1,8 +1,8 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  
+  font-size: 14px;  
 }
+
 .container-fluid{
   margin-left:auto;
   width: 85%;
@@ -13,10 +13,11 @@ input {
   width: 100%;
   padding: 6px;
   font-size: 20px;
-  border: none;
   background-color: #d3d3d3;
   margin: 0;
   padding-left: 10px;
+  border-style: none;
+ 
 }
 .business-hours{
   height: 50px;
@@ -25,7 +26,7 @@ input {
   padding-top: 15px;
   margin-top: 0px;
   font-size: 12px;
-  border-style: none;
+  border-style: solid;
   margin-right: 0px;
   text-align: center;
   border-color: rgb(34, 34, 32);
@@ -53,9 +54,6 @@ input {
 .row {
   height: 80px;
   border-top: 1px solid white;;
-}
-.marginRow{
-  margin-bottom:0px !important; 
 }
 .hour {
   background-color: #ffffff;
