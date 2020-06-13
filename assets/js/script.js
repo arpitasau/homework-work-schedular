@@ -20,8 +20,6 @@ $(document).ready(function() {
 });  
 
 function populateBusinessHours() {
-  var currentDOW = moment().isoWeekday();
-  if (currentDOW <= 5) {
     for(var i = 0; i < businessHours.length; i++) {
       console.log(businessHours[i].format('LT'));
       var startTime = businessHours[i];
@@ -46,7 +44,7 @@ function populateBusinessHours() {
       }
     }
   }
-}
+
 //Function to get date using moment.js
 //Refer https://momentjs.com/docs/ search for LLLL
 function getTodaysDate() {
@@ -93,13 +91,13 @@ function populateRows (){
   }
 }
 //add event listener to save button
-  $('body').on("click", '.action', function(){
-    var buttonIndex = $(this).data('index');
-    var inputText = $(".event-text").get(buttonIndex).value;
-    if (inputText=== "") {
-        return;
-    }
-    events['input' + buttonIndex] = inputText;
-  console.log(events);
-  localStorage.setItem("events", JSON.stringify(events));
+$('body').on("click", '.action', function(){
+  var buttonIndex = $(this).data('index');
+  var inputText = $(".event-text").get(buttonIndex).value;
+  if (inputText=== "") {
+      return;
+  }
+  events['input' + buttonIndex] = inputText;
+console.log(events);
+localStorage.setItem("events", JSON.stringify(events));
 });
